@@ -14,8 +14,9 @@ module "network" {
   ddos_protection_plan_id = var.ddos_protection_plan_id
 
   # subnets
-  subnets                 = var.subnets
-  extra_route_table_rules = var.extra_route_table_rules
+  subnets                         = var.subnets
+  route_table_next_hop_ip_address = var.route_table_next_hop_ip_address
+  extra_route_table_rules         = var.extra_route_table_rules
 
   # BGP
   route_server_bgp_peers = var.route_server_bgp_peers
