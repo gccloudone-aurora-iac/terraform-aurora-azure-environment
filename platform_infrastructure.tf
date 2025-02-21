@@ -17,8 +17,7 @@ module "platform_infrastructure" {
 
   networking_ids = {
     dns_zones = {
-      cloud_aurora_ca = var.data_sources.dns_zone_id.cloud_aurora_ca
-      blob_storage     = var.data_sources.dns_zone_id.blob_storage
+      blob_storage = var.data_sources.dns_zone_id.blob_storage
     }
     subnets = {
       infrastructure = module.network.vnet_subnets["infrastructure"].id

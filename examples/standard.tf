@@ -235,14 +235,13 @@ module "cloud_native_environment" {
 
   data_sources = {
     dns_zone_id = {
-      cloud_aurora_ca = azurerm_dns_zone.public.id
       azmk8s           = azurerm_private_dns_zone.aks.id
       blob_storage     = azurerm_private_dns_zone.blob_storage.id
       keyvault         = azurerm_private_dns_zone.keyvault.id
     }
     active_directory = {
       service_principal_id = {
-        gitlab_runner = data.azurerm_client_config.this.client_id
+        cicd_runner = data.azurerm_client_config.this.client_id
       }
       group_id = {
         cloudoperationscn           = azuread_group.cloudoperationscn.id
