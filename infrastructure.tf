@@ -23,7 +23,7 @@ locals {
 # TODO: Michael to provide context on why this is necessary
 resource "azuread_group" "cluster_admins" {
   display_name     = "${module.azure_resource_prefixes.prefix}-cluster-admins"
-  owners           = [var.data_sources.active_directory.service_principal_id.gitlab_runner]
+  owners           = [var.data_sources.active_directory.service_principal_id.cicd_runner]
   members          = var.cluster_admins
   security_enabled = true
 }
