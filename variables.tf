@@ -33,18 +33,18 @@ variable "data_sources" {
   description = "The Azure resource IDs of existing resources that are required by the module."
   type = object({
     dns_zone_id = object({
-      cloud_aurora_ca = string
-      azmk8s           = string
-      blob_storage     = string
-      keyvault         = string
+      azmk8s       = string
+      cert_manager = string
+      blob_storage = string
+      keyvault     = string
     })
     active_directory = object({
       service_principal_id = object({
-        gitlab_runner = string
+        cicd_runner = string
       })
       group_id = object({
-        cloudoperationscn             = string
-        hosting_k8s                   = string
+        cloudoperationscn           = string
+        hosting_k8s                 = string
         aurora_general_cluster_user = string
       })
       tenant_id       = string
@@ -153,6 +153,11 @@ variable "subnets" {
     ]))
     error_message = "The argument address_prefixes must be written in CIDR notation."
   }
+}
+
+variable "route_table_next_hop_ip_address" {
+  description = "The next hop ip address to add to the standard route table."
+  type        = string
 }
 
 variable "extra_route_table_rules" {
