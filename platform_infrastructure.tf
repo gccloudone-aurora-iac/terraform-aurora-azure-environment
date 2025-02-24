@@ -17,6 +17,7 @@ module "platform_infrastructure" {
 
   networking_ids = {
     dns_zones = {
+      cert_manager = var.data_sources.dns_zone_id.cert_manager
       blob_storage = var.data_sources.dns_zone_id.blob_storage
     }
     subnets = {

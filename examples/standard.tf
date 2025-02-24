@@ -236,6 +236,7 @@ module "cloud_native_environment" {
   data_sources = {
     dns_zone_id = {
       azmk8s           = azurerm_private_dns_zone.aks.id
+      cert_manager     = azurerm_private_dns_zone.cert_manager.id
       blob_storage     = azurerm_private_dns_zone.blob_storage.id
       keyvault         = azurerm_private_dns_zone.keyvault.id
     }

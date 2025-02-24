@@ -34,6 +34,7 @@ variable "data_sources" {
   type = object({
     dns_zone_id = object({
       azmk8s       = string
+      cert_manager = string
       blob_storage = string
       keyvault     = string
     })
