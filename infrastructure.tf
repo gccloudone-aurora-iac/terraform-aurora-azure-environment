@@ -48,6 +48,8 @@ module "infrastructure" {
   cluster_vnet_id               = module.network.vnet_id
   cluster_linux_profile_ssh_key = var.cluster_linux_profile_ssh_key
 
+  custom_ca = var.custom_ca
+
   node_pools = local.node_pools
 
   networking_ids = {

@@ -209,6 +209,12 @@ variable "node_os_upgrade_channel" {
   default     = "NodeImage"
 }
 
+variable "custom_ca" {
+  description = "Configure a custom Certificate Authority (CA) for the Cluster"
+  type        = string
+  default     = null
+}
+
 ### Node Pools ###
 
 variable "node_pools" {
