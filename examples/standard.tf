@@ -162,11 +162,16 @@ resource "azuread_group" "aurora_general_cluster_user" {
 module "cloud_native_environment" {
   source = "../"
 
+  naming_convention = "gc"
+  user_defined      = "example"
+
   azure_resource_attributes = {
-    project     = "aur"
-    environment = "dev"
-    location    = azurerm_resource_group.example.location
-    instance    = 0
+    department_code = "Gc"
+    owner           = "ABC"
+    project         = "aur"
+    environment     = "dev"
+    location        = azurerm_resource_group.example.location
+    instance        = 0
   }
   service_principal_owners = [data.azurerm_client_config.this.object_id]
 
@@ -235,10 +240,10 @@ module "cloud_native_environment" {
 
   data_sources = {
     dns_zone_id = {
-      azmk8s           = azurerm_private_dns_zone.aks.id
-      cert_manager     = azurerm_private_dns_zone.cert_manager.id
-      blob_storage     = azurerm_private_dns_zone.blob_storage.id
-      keyvault         = azurerm_private_dns_zone.keyvault.id
+      azmk8s       = azurerm_private_dns_zone.aks.id
+      cert_manager = azurerm_private_dns_zone.cert_manager.id
+      blob_storage = azurerm_private_dns_zone.blob_storage.id
+      keyvault     = azurerm_private_dns_zone.keyvault.id
     }
     active_directory = {
       service_principal_id = {
@@ -253,6 +258,8 @@ module "cloud_native_environment" {
       subscription_id = data.azurerm_client_config.this.subscription_id
     }
   }
+
+  route_table_next_hop_ip_address = ""
 
   tags = local.azure_tags
 }

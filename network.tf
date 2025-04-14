@@ -3,9 +3,11 @@
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network
 #
 module "network" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git?ref=v1.0.0"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git?ref=v2.0.0"
 
   azure_resource_attributes = var.azure_resource_attributes
+  naming_convention         = var.naming_convention
+  user_defined              = var.user_defined
 
   # virtual network
   vnet_address_space      = var.vnet_address_space

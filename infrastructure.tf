@@ -22,7 +22,7 @@ locals {
 #
 # TODO: Michael to provide context on why this is necessary
 resource "azuread_group" "cluster_admins" {
-  display_name     = "${module.azure_resource_prefixes.prefix}-cluster-admins"
+  display_name     = "${module.azure_resource_names.name}-cluster-admins"
   owners           = [var.data_sources.active_directory.service_principal_id.cicd_runner]
   members          = var.cluster_admins
   security_enabled = true
@@ -33,9 +33,11 @@ resource "azuread_group" "cluster_admins" {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v1.0.0"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.0"
 
   azure_resource_attributes = var.azure_resource_attributes
+  naming_convention         = var.naming_convention
+  user_defined              = var.user_defined
 
   cluster_sku_tier   = var.cluster_sku_tier
   cluster_admins     = [azuread_group.cluster_admins.object_id]
