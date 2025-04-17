@@ -16,15 +16,15 @@ Examples for this module along with various configurations can be found in the [
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, < 2.0.0 |
-| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | >= 2.0.0, < 4.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 3.15, < 4.0 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~> 3.3.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.26.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | >= 2.0.0, < 4.0 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.15, < 4.0 |
+| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | ~> 3.3.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~> 4.26.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
