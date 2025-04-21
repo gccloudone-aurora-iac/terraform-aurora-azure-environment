@@ -5,7 +5,7 @@
 ## Network ##
 output "network_resource_group_id" {
   description = "The id of the network resource group created."
-  value       = module.network.resource_group_id
+  value       = var.vnet_id == null ? module.network[0].resource_group_id : null
 }
 
 ## Infrastructure ##
@@ -36,49 +36,49 @@ output "backup_resource_group_id" {
 
 output "network" {
   description = "The outputs of the environment_network module."
-  value       = module.network
+  value       = var.vnet_id == null ? module.network[0] : null
 }
 
 output "vnet_id" {
   description = "The id of the newly created virtual network"
-  value       = module.network.vnet_id
+  value       = var.vnet_id == null ? null : var.vnet_id
 }
 
 output "nsg_ids" {
   description = "The resource ids of the network security groups created within this module."
-  value       = module.network.nsg_ids
+  value       = var.vnet_id == null ? module.network[0].nsg_ids : null
 }
 
 output "route_table_id" {
   description = "The address space of the newly created virtual network"
-  value       = module.network.route_table_id
+  value       = var.vnet_id == null ? module.network[0].route_table_id : null
 }
 
 output "vnet_subnets" {
   description = "The ids of subnets created inside the newly created virtual network"
-  value       = module.network.vnet_subnets
+  value       = var.vnet_id == null ? module.network[0].vnet_subnets : null
 }
 
 output "node_pool_subnet_address_prefixes" {
   description = "The node pool subnet address prefixes."
-  value       = { for nodepool_name, nodepool in local.node_pools : nodepool_name => nodepool.vnet_subnet_name != null ? module.network.vnet_subnets[nodepool.vnet_subnet_name].address_prefixes : module.network.vnet_subnets[nodepool_name].address_prefixes }
+  value       = { for nodepool_name, nodepool in local.node_pools : nodepool_name => nodepool.vnet_subnet_name != null ? var.vnet_id == null ? module.network[0].vnet_subnets[nodepool.vnet_subnet_name].address_prefixes : null : var.vnet_id == null ? module.network[0].vnet_subnets[nodepool_name].address_prefixes : null }
 }
 
 ## Route Server ##
 
 output "route_server_id" {
   description = "The ID of the Route Server."
-  value       = module.network.route_server_id
+  value       = var.vnet_id == null ? module.network[0].route_server_id : null
 }
 
 output "route_server_ip_addresses" {
   description = "The peer IP addresses of the Route Server. In other words, it is the private IPs of the route server."
-  value       = module.network.route_server_ip_addresses
+  value       = var.vnet_id == null ? module.network[0].route_server_ip_addresses : null
 }
 
 output "route_server_public_ip_id" {
   description = "The ID of the public IP used by the route server"
-  value       = module.network.route_server_public_ip_id
+  value       = var.vnet_id == null ? module.network[0].route_server_public_ip_id : null
 }
 
 ###############

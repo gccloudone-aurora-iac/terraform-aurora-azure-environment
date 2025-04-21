@@ -24,7 +24,7 @@ module "platform_infrastructure" {
       blob_storage = var.data_sources.dns_zone_id.blob_storage
     }
     subnets = {
-      infrastructure = module.network.vnet_subnets["infrastructure"].id
+      infrastructure = var.vnet_id == null ? module.network[0].vnet_subnets["infrastructure"].id : var.subnet_ids["infrastructure"]
     }
   }
 

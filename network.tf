@@ -4,6 +4,7 @@
 #
 module "network" {
   source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git?ref=v2.0.0"
+  count  = var.vnet_id == null ? 1 : 0
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention

@@ -5,7 +5,7 @@ locals {
   // otherwise use the same subnet that the name of the node pool is
   node_pools = {
     for nodepool_name, nodepool in var.node_pools :
-    nodepool_name => nodepool.vnet_subnet_name != null ? merge({ vnet_subnet_id = module.network.vnet_subnets_name_id[nodepool.vnet_subnet_name] }, nodepool) : merge({ vnet_subnet_id = module.network.vnet_subnets_name_id[nodepool_name] }, nodepool)
+    nodepool_name => nodepool.vnet_subnet_name != null ? merge({ vnet_subnet_id = var.vnet_id == null ? module.network[0].vnet_subnets_name_id[nodepool.vnet_subnet_name] : var.subnet_ids[nodepool.vnet_subnet_name] }, nodepool) : merge({ vnet_subnet_id = var.vnet_id == null ? module.network[0].vnet_subnets_name_id[nodepool_name] : var.subnet_ids[nodepool_name] }, nodepool)
   }
 
   tags = merge(var.tags, { ModuleName = "terraform-aurora-azure-environment" }, { ModuleVersion = "v1.0.0" })

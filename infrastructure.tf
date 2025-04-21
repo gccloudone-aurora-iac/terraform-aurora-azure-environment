@@ -22,7 +22,7 @@ locals {
 #
 # TODO: Michael to provide context on why this is necessary
 resource "azuread_group" "cluster_admins" {
-  display_name     = "${module.azure_resource_names.name}-cluster-admins"
+  display_name = "${module.azure_resource_names.name}-cluster-admins"
   owners           = [var.data_sources.active_directory.service_principal_id.cicd_runner]
   members          = var.cluster_admins
   security_enabled = true
@@ -47,7 +47,7 @@ module "infrastructure" {
     maintenance_window = local.maintenance_window_node_os
   }
 
-  cluster_vnet_id               = module.network.vnet_id
+  cluster_vnet_id               = var.vnet_id == null ? module.network[0].vnet_id : var.vnet_id
   cluster_linux_profile_ssh_key = var.cluster_linux_profile_ssh_key
 
   custom_ca = var.custom_ca
@@ -60,8 +60,8 @@ module "infrastructure" {
       keyvault = var.data_sources.dns_zone_id.keyvault
     }
     subnets = {
-      api_server     = module.network.vnet_subnets["apiserver"].id
-      infrastructure = module.network.vnet_subnets["infrastructure"].id
+      api_server     = var.vnet_id == null ? module.network[0].vnet_subnets["apiserver"].id : var.subnet_ids["apiserver"]
+      infrastructure = var.vnet_id == null ? module.network[0].vnet_subnets["infrastructure"].id : var.subnet_ids["infrastructure"]
     }
   }
 

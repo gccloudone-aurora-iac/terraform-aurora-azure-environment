@@ -80,6 +80,12 @@ variable "data_sources" {
 ### Virtual Network ###
 #######################
 
+variable "vnet_id" {
+  description = "The id of the virtual network."
+  type        = string
+  default     = null
+}
+
 variable "vnet_address_space" {
   description = "The address space for the virtual network."
   type        = list(string)
@@ -110,6 +116,13 @@ variable "dns_servers" {
 variable "ddos_protection_plan_id" {
   description = "The DDoS protection plan resoruce id"
   type        = string
+  default     = null
+}
+
+
+variable "subnet_ids" {
+  description = "The subnet ids for the virtual network."
+  type        = map(string)
   default     = null
 }
 
@@ -156,24 +169,27 @@ variable "subnets" {
   }))
 
   validation {
-    condition = (
-      contains(keys(var.subnets), "RouteServerSubnet") &&
-      contains(keys(var.subnets), "loadbalancer") &&
-      contains(keys(var.subnets), "gateway") &&
-      contains(keys(var.subnets), "system") &&
-      contains(keys(var.subnets), "general") &&
-      contains(keys(var.subnets), "infrastructure")
-    )
+    condition = var.subnets != null ? (
+      can(keys(var.subnets)) && (
+        contains(keys(var.subnets), "RouteServerSubnet", []) &&
+        contains(keys(var.subnets), "loadbalancer", []) &&
+        contains(keys(var.subnets), "gateway", []) &&
+        contains(keys(var.subnets), "system", []) &&
+        contains(keys(var.subnets), "general", []) &&
+        contains(keys(var.subnets), "infrastructure", [])
+      )
+    ) : true
     error_message = "Each Cloud Native Platform virtual network must contain the RouteServerSubnet, loadbalancer, gateway, system, general and infrastructure subnet."
   }
 
   validation {
-    condition = alltrue(flatten([
+    condition = var.subnets != null ? alltrue(flatten([
       for subnet in var.subnets : [
-        for address_prefix in subnet.address_prefixes :
-        can(cidrhost(address_prefix, 0))
+        for address_prefix in subnet.address_prefixes : [
+          can(cidrhost(address_prefix, 0))
+        ]
       ]
-    ]))
+    ])) : true
     error_message = "The argument address_prefixes must be written in CIDR notation."
   }
 }
