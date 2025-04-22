@@ -22,8 +22,8 @@ locals {
 #
 # TODO: Michael to provide context on why this is necessary
 resource "azuread_group" "cluster_admins" {
-  display_name = "${module.azure_resource_names.name}-cluster-admins"
-  owners           = [var.data_sources.active_directory.service_principal_id.cicd_runner]
+  display_name     = "${module.azure_resource_names.name}-cluster-admins"
+  owners           = [var.data_sources.active_directory.service_principal_id.cluster_admins_owner]
   members          = var.cluster_admins
   security_enabled = true
 }

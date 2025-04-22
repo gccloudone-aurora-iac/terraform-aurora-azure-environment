@@ -63,11 +63,10 @@ variable "data_sources" {
     })
     active_directory = object({
       service_principal_id = object({
-        cicd_runner = string
+        cicd_runner          = string
+        cluster_admins_owner = ""
       })
       group_id = object({
-        cloudoperationscn           = string
-        hosting_k8s                 = string
         aurora_general_cluster_user = string
       })
       tenant_id       = string

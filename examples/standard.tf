@@ -133,18 +133,6 @@ resource "azurerm_dns_zone" "public" {
 
 # AAD Groups
 
-resource "azuread_group" "hosting_k8s" {
-  display_name     = "hosting-k8s"
-  owners           = [data.azurerm_client_config.this.object_id]
-  security_enabled = true
-}
-
-resource "azuread_group" "cloudoperationscn" {
-  display_name     = "cloudoperationscn"
-  owners           = [data.azurerm_client_config.this.object_id]
-  security_enabled = true
-}
-
 resource "azuread_group" "aurora_general_cluster_user" {
   display_name     = "aurora-general-cluster-user"
   owners           = [data.azurerm_client_config.this.object_id]
@@ -247,11 +235,10 @@ module "cloud_native_environment" {
     }
     active_directory = {
       service_principal_id = {
-        cicd_runner = data.azurerm_client_config.this.client_id
+        cicd_runner          = data.azurerm_client_config.this.client_id
+        cluster_admins_owner = ""
       }
       group_id = {
-        cloudoperationscn           = azuread_group.cloudoperationscn.id
-        hosting_k8s                 = azuread_group.hosting_k8s.id
         aurora_general_cluster_user = azuread_group.aurora_general_cluster_user.id
       }
       tenant_id       = data.azurerm_client_config.this.tenant_id
