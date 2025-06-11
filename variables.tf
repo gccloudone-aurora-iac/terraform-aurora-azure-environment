@@ -163,20 +163,19 @@ variable "subnets" {
     })))
 
     service_delegation_name                       = optional(string)
-    private_endpoint_network_policies_enabled     = optional(bool, true)
+    private_endpoint_network_policies_enabled     = optional(string, "Enabled")
     private_link_service_network_policies_enabled = optional(bool, true)
   }))
 
   validation {
     condition = var.subnets != null ? (
-      can(keys(var.subnets)) && (
-        contains(keys(var.subnets), "RouteServerSubnet", []) &&
-        contains(keys(var.subnets), "loadbalancer", []) &&
-        contains(keys(var.subnets), "gateway", []) &&
-        contains(keys(var.subnets), "system", []) &&
-        contains(keys(var.subnets), "general", []) &&
-        contains(keys(var.subnets), "infrastructure", [])
-      )
+      can(keys(var.subnets)) &&
+      contains(keys(var.subnets), "RouteServerSubnet") &&
+      contains(keys(var.subnets), "loadbalancer") &&
+      contains(keys(var.subnets), "gateway") &&
+      contains(keys(var.subnets), "system") &&
+      contains(keys(var.subnets), "general") &&
+      contains(keys(var.subnets), "infrastructure")
     ) : true
     error_message = "Each Cloud Native Platform virtual network must contain the RouteServerSubnet, loadbalancer, gateway, system, general and infrastructure subnet."
   }
