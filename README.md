@@ -95,4 +95,4 @@ Examples for this module along with various configurations can be found in the [
 | Date       | Release | Change                                                                                                                                                                                   |
 | ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 2025-01-25 | v1.0.0  | Initial commit                                                                                                                                                                           |
-| 2026-10-08 | v2.0.1  | uncomment custom velero role assignments                                                                                                                                                 | 
+| 2026-10-08 | v2.0.1  | Uncomment custom velero role assignments                                                                                                                                                 | 
