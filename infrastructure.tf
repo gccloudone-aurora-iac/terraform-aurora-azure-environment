@@ -32,15 +32,16 @@ resource "azuread_group" "cluster_admins" {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.0"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.1"
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention
   user_defined              = var.user_defined
 
-  cluster_sku_tier   = var.cluster_sku_tier
-  cluster_admins     = [azuread_group.cluster_admins.object_id]
-  kubernetes_version = var.kubernetes_version
+  cluster_sku_tier     = var.cluster_sku_tier
+  cluster_admins       = [azuread_group.cluster_admins.object_id]
+  cluster_support_plan = var.cluster_support_plan
+  kubernetes_version   = var.kubernetes_version
   node_os_upgrade = {
     channel            = var.node_os_upgrade_channel
     maintenance_window = local.maintenance_window_node_os
