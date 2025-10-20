@@ -36,8 +36,8 @@ Examples for this module along with various configurations can be found in the [
 | <a name="module_grafana_azuread_oauth_sp"></a> [grafana\_azuread\_oauth\_sp](#module\_grafana\_azuread\_oauth\_sp) | git::https://github.com/gccloudone-aurora-iac/terraform-azure-service-principal.git | v2.0.0 |
 | <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git | v2.0.0 |
 | <a name="module_kubecost_sp"></a> [kubecost\_sp](#module\_kubecost\_sp) | git::https://github.com/gccloudone-aurora-iac/terraform-azure-service-principal.git | v2.0.0 |
-| <a name="module_network"></a> [network](#module\_network) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git | v2.0.0 |
-| <a name="module_platform_infrastructure"></a> [platform\_infrastructure](#module\_platform\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git | v2.0.0 |
+| <a name="module_network"></a> [network](#module\_network) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git | v2.0.1 |
+| <a name="module_platform_infrastructure"></a> [platform\_infrastructure](#module\_platform\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git | v2.0.3 |
 
 ## Inputs
 
@@ -92,8 +92,9 @@ Examples for this module along with various configurations can be found in the [
 
 ## History
 
-| Date       | Release | Change                                                                                                                                                                                   |
-| ---------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2025-01-25 | v1.0.0  | Initial commit                                                                                                                                                                           |
-| 2025-10-08 | v2.0.1  | Uncomment custom velero role assignments                                                                                                                                                 | 
-| 2025-10-20 | v2.0.2  | Add variable `cluster_support_plan`                                                                                                                                                      | 
+| Date       | Release | Change                                                                              |
+| ---------- | ------- | ----------------------------------------------------------------------------------- |
+| 2025-01-25 | v1.0.0  | initial commit                                                                      |
+| 2025-10-08 | v2.0.1  | Uncomment custom velero role                                                        |
+| 2025-10-20 | v2.0.2  | Add variable `cluster_support_plan`                                                 |
+| 2025-10-20 | v2.0.3  | Pin minimum version of azurerm to 4.49.0                                            |
