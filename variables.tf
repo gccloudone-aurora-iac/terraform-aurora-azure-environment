@@ -228,6 +228,11 @@ variable "cluster_sku_tier" {
   type        = string
 }
 
+variable "cluster_support_plan" {
+  description = "The support plan used for the AKS cluster."
+  type        = string
+}
+
 variable "cluster_admins" {
   description = "A list of Object IDs of Azure Active Directory groups or users which should have Admin Role on the Cluster."
   type        = list(string)
