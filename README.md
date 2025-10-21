@@ -37,7 +37,7 @@ Examples for this module along with various configurations can be found in the [
 | <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git | v2.0.0 |
 | <a name="module_kubecost_sp"></a> [kubecost\_sp](#module\_kubecost\_sp) | git::https://github.com/gccloudone-aurora-iac/terraform-azure-service-principal.git | v2.0.0 |
 | <a name="module_network"></a> [network](#module\_network) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git | v2.0.1 |
-| <a name="module_platform_infrastructure"></a> [platform\_infrastructure](#module\_platform\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git | v2.0.3 |
+| <a name="module_platform_infrastructure"></a> [platform\_infrastructure](#module\_platform\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git | v2.0.2 |
 
 ## Inputs
 
