@@ -293,6 +293,12 @@ variable "node_pools" {
   )
 }
 
+variable "vnet_integration_enabled" {
+  description = "Enable or disable Virtual Network Integration."
+  type        = bool
+  default     = false
+}
+
 ###############################
 ### Platform Infrastructure ###
 ###############################
