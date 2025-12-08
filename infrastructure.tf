@@ -32,7 +32,7 @@ resource "azuread_group" "cluster_admins" {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.6"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.7"
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention
