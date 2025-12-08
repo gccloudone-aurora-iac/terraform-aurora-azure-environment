@@ -286,6 +286,7 @@ variable "node_pools" {
       enable_host_encryption = optional(bool)
       os_disk_size_gb        = optional(number)
       os_disk_type           = optional(string)
+      os_sku                 = optional(string)
       os_type                = optional(string)
       vm_priority            = optional(string)
       eviction_policy        = optional(string)
