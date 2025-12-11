@@ -7,7 +7,7 @@ locals {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure
 #
 module "platform_infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git?ref=v2.0.2"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git?ref=feature/enable-workload-identity"
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention
