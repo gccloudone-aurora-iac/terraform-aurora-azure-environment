@@ -334,7 +334,7 @@ variable "grafana_sp" {
   }
 }
 
-##############
+/* ##############
 ### Addons ###
 ##############
 
@@ -356,4 +356,4 @@ variable "oidc_issuer" {
 
     error_message = "To enable Azure AD Workload Identity oidc_issuer_enabled must be set to true."
   }
-}
+} */
