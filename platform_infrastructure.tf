@@ -36,6 +36,8 @@ module "platform_infrastructure" {
     }
   }
 
+  oidc_issuer_url = module.infrastructure.oidc_issuer_url
+
   bill_of_landing_managed_identity_id = var.azure_resource_attributes.project == "mgmt" ? local.bill_of_landing_managed_identity_id : null
 
   tags = local.tags
