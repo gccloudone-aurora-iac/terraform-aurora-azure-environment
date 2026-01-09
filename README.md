@@ -124,3 +124,4 @@ Examples for this module along with various configurations can be found in the [
 | 2025-12-24 | v2.0.9  | Federated identity credential setup in downstream platform-infrastructure module    |
 | 2026-01-06 | v2.1.0  | Add additional permissions for velero operations in platform-infrastructure module  |  
 | 2026-01-08 | v2.1.1  | Federated identity credential setup in for cert manager in downstream module        |                                                                   |
+| 2026-01-09 | v2.1.2  | Pass oidc issuer url for cert manager workload identity in downstream module        |
