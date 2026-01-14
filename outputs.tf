@@ -120,6 +120,11 @@ output "cluster_kubeconfig" {
   value       = module.infrastructure.cluster_kubeconfig
 }
 
+output "oidc_issuer_url" {
+  description = "The OIDC issuer URL that is associated with the cluster."
+  value = module.infrastructure.oidc_issuer_url
+}
+
 ###############################
 ### Platform Infrastructure ###
 ###############################
