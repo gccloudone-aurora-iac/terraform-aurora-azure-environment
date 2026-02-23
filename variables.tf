@@ -277,6 +277,7 @@ variable "node_pools" {
     object({
       vm_size                = string
       vnet_subnet_name       = optional(string)
+      pod_subnet_id          = optional(string)
       availability_zones     = optional(list(number))
       node_count             = optional(number)
       kubernetes_version     = optional(string)
