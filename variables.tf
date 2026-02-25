@@ -239,6 +239,12 @@ variable "cluster_admins" {
   default     = []
 }
 
+variable "cluster_admins_group_object_id" {
+  description = "Existing Entra ID group object ID."
+  type        = string
+  default     = null
+}
+
 variable "cluster_linux_profile_ssh_key" {
   description = "SSH public key to access cluster nodes"
   type        = string

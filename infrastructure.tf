@@ -21,6 +21,7 @@ locals {
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group
 #
 resource "azuread_group" "cluster_admins" {
+  count            = var.cluster_admins_group_object_id == null ? 1 : 0
   display_name     = "${module.azure_resource_names.active_directory_group_name}-cluster-admins"
   owners           = [var.data_sources.active_directory.service_principal_id.cluster_admins_owner]
   members          = var.cluster_admins
