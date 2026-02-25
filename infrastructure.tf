@@ -40,7 +40,7 @@ module "infrastructure" {
   user_defined              = var.user_defined
 
   cluster_sku_tier     = var.cluster_sku_tier
-  cluster_admins       = [azuread_group.cluster_admins.object_id]
+  cluster_admins       = [var.cluster_admins_group_object_id != null ? var.cluster_admins_group_object_id : azuread_group.cluster_admins.object_id]
   cluster_support_plan = var.cluster_support_plan
   cluster_diag_setting = var.cluster_diag_setting
   kubernetes_version   = var.kubernetes_version
