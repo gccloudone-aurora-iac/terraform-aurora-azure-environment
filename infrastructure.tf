@@ -33,7 +33,7 @@ resource "azuread_group" "cluster_admins" {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=feat/cni-cilium"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.11"
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention
@@ -58,6 +58,11 @@ module "infrastructure" {
 
   node_pools = local.node_pools
 
+  network_plugin      = var.network_plugin
+  network_policy      = var.network_policy
+  network_mode        = var.network_mode
+  network_data_plane  = var.network_data_plane
+
   networking_ids = {
     dns_zones = {
       azmk8s   = var.data_sources.dns_zone_id.azmk8s
@@ -68,6 +73,8 @@ module "infrastructure" {
       infrastructure = var.vnet_id == null ? module.network[0].vnet_subnets["infrastructure"].id : var.subnet_ids["infrastructure"]
     }
   }
+
+  create_private_dns_zone_role = var.create_private_dns_zone_role
 
   vnet_integration_enabled = var.vnet_integration_enabled
 
