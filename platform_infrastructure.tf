@@ -38,6 +38,8 @@ module "platform_infrastructure" {
 
   oidc_issuer_url = module.infrastructure.oidc_issuer_url
 
+  create_custom_role_assignment = var.create_custom_role_assignment
+
   bill_of_landing_managed_identity_id = var.azure_resource_attributes.project == "mgmt" ? local.bill_of_landing_managed_identity_id : null
 
   tags = local.tags

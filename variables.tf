@@ -348,3 +348,13 @@ variable "grafana_sp" {
     }
   }
 }
+
+####################
+### Custom Roles ###
+####################
+
+variable "create_custom_role_assignment" {
+  description = "Set to true to create the custom role assignments."
+  type        = bool
+  default     = true
+}
