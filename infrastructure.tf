@@ -39,6 +39,8 @@ module "infrastructure" {
   naming_convention         = var.naming_convention
   user_defined              = var.user_defined
 
+  spn_object_ids       = var.spn_object_ids
+
   cluster_sku_tier     = var.cluster_sku_tier
   cluster_admins       = [var.cluster_admins_group_object_id != null ? var.cluster_admins_group_object_id : azuread_group.cluster_admins[0].object_id]
   cluster_support_plan = var.cluster_support_plan
