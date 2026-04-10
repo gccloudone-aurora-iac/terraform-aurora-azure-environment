@@ -57,6 +57,8 @@ module "infrastructure" {
 
   node_pools = local.node_pools
 
+  azure_policy_enabled = var.azure_policy_enabled
+
   networking_ids = {
     dns_zones = {
       azmk8s   = var.data_sources.dns_zone_id.azmk8s
