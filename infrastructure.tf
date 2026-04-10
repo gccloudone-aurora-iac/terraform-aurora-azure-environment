@@ -58,6 +58,8 @@ module "infrastructure" {
 
   node_pools = local.node_pools
 
+  azure_policy_enabled = var.azure_policy_enabled
+
   network_plugin      = var.network_plugin
   network_policy      = var.network_policy
   network_mode        = var.network_mode

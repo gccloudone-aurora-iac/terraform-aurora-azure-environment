@@ -395,6 +395,12 @@ variable "vnet_integration_enabled" {
   default     = false
 }
 
+variable "azure_policy_enabled" {
+  description = "Flag to enable or disable Azure policy"
+  type        = bool
+  default     = false
+}
+
 ###############################
 ### Platform Infrastructure ###
 ###############################
