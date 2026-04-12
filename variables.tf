@@ -83,6 +83,12 @@ variable "data_sources" {
   })
 }
 
+variable "create_private_dns_zone_role" {
+  description = "Set to true to create the private dns zone role."
+  type        = bool
+  default     = true
+}
+
 #######################
 ### Virtual Network ###
 #######################
@@ -222,6 +228,68 @@ variable "route_server_bgp_peers" {
   }))
 }
 
+###########
+### CNI ###
+###########
+
+variable "network_plugin" {
+  description = "AKS network plugin"
+  type        = string
+  default     = "azure"
+
+  validation {
+    condition = (
+      contains(["azure", "none"], var.network_plugin)
+    )
+    error_message = "network_plugin must be one of 'azure' or 'none'."
+  }
+}
+
+variable "network_mode" {
+  description = "AKS network mode"
+  type        = string
+  default     = "transparent"
+  nullable    = true
+
+  validation {
+    condition = (
+      var.network_mode == null ||
+      contains(["bridge", "transparent"], var.network_mode)
+    )
+    error_message = "network_policy must be one of: bridge, transparent, or null."
+  }
+}
+
+variable "network_policy" {
+  description = "AKS network policy"
+  type        = string
+  default     = "cilium"
+  nullable    = true
+
+  validation {
+    condition = (
+      var.network_policy == null ||
+      contains(["azure", "cilium"], var.network_policy)
+    )
+    error_message = "network_policy must be one of: azure, cilium, or null."
+  }
+}
+
+variable "network_data_plane" {
+  description = "AKS network data plane"
+  type        = string
+  default     = "cilium"
+  nullable    = true
+
+  validation {
+    condition = (
+      var.network_data_plane == null ||
+      contains(["azure", "cilium"], var.network_data_plane)
+    )
+    error_message = "network_data_plane must be azure, cilium, or null."
+  }
+}
+
 ##################################
 ### AKS Cluster Infrastructure ###
 ##################################
@@ -245,6 +313,12 @@ variable "cluster_admins" {
   description = "A list of Object IDs of Azure Active Directory groups or users which should have Admin Role on the Cluster."
   type        = list(string)
   default     = []
+}
+
+variable "cluster_admins_group_object_id" {
+  description = "Existing Entra ID group object ID."
+  type        = string
+  default     = null
 }
 
 variable "cluster_linux_profile_ssh_key" {
@@ -285,6 +359,7 @@ variable "node_pools" {
     object({
       vm_size                = string
       vnet_subnet_name       = optional(string)
+      pod_subnet_id          = optional(string)
       availability_zones     = optional(list(number))
       node_count             = optional(number)
       kubernetes_version     = optional(string)
@@ -346,4 +421,14 @@ variable "grafana_sp" {
       admin  = {}
     }
   }
+}
+
+####################
+### Custom Roles ###
+####################
+
+variable "create_custom_role_assignment" {
+  description = "Set to true to create the custom role assignments."
+  type        = bool
+  default     = true
 }

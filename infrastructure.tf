@@ -21,6 +21,7 @@ locals {
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group
 #
 resource "azuread_group" "cluster_admins" {
+  count            = var.cluster_admins_group_object_id == null ? 1 : 0
   display_name     = "${module.azure_resource_names.active_directory_group_name}-cluster-admins"
   owners           = [var.data_sources.active_directory.service_principal_id.cluster_admins_owner]
   members          = var.cluster_admins
@@ -32,7 +33,7 @@ resource "azuread_group" "cluster_admins" {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.10"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.11"
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention
@@ -41,7 +42,7 @@ module "infrastructure" {
   spn_object_ids       = var.spn_object_ids
 
   cluster_sku_tier     = var.cluster_sku_tier
-  cluster_admins       = [azuread_group.cluster_admins.object_id]
+  cluster_admins       = [var.cluster_admins_group_object_id != null ? var.cluster_admins_group_object_id : azuread_group.cluster_admins[0].object_id]
   cluster_support_plan = var.cluster_support_plan
   cluster_diag_setting = var.cluster_diag_setting
   kubernetes_version   = var.kubernetes_version
@@ -59,6 +60,11 @@ module "infrastructure" {
 
   azure_policy_enabled = var.azure_policy_enabled
 
+  network_plugin      = var.network_plugin
+  network_policy      = var.network_policy
+  network_mode        = var.network_mode
+  network_data_plane  = var.network_data_plane
+
   networking_ids = {
     dns_zones = {
       azmk8s   = var.data_sources.dns_zone_id.azmk8s
@@ -69,6 +75,8 @@ module "infrastructure" {
       infrastructure = var.vnet_id == null ? module.network[0].vnet_subnets["infrastructure"].id : var.subnet_ids["infrastructure"]
     }
   }
+
+  create_private_dns_zone_role = var.create_private_dns_zone_role
 
   vnet_integration_enabled = var.vnet_integration_enabled
 
