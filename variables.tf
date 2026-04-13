@@ -253,7 +253,9 @@ variable "network_mode" {
 
   validation {
     condition = (
-      var.network_mode == null || (can(contains(["bridge", "transparent"], var.network_mode)) && contains(["bridge", "transparent"], var.network_mode))
+      var.network_mode == null 
+      ? true
+      : contains(["bridge", "transparent"], var.network_mode)
     )
     error_message = "network_policy must be one of: bridge, transparent, or null."
   }
@@ -267,7 +269,9 @@ variable "network_policy" {
 
   validation {
     condition = (
-      var.network_policy == null || (can(contains(["azure", "cilium"], var.network_policy)) && contains(["azure", "cilium"], var.network_policy))
+      var.network_policy == null 
+      ? true
+      : contains(["azure", "cilium"], var.network_policy)
     )
     error_message = "network_policy must be one of: azure, cilium, or null."
   }
@@ -281,7 +285,9 @@ variable "network_data_plane" {
 
   validation {
     condition = (
-      var.network_data_plane == null || (can(contains(["azure", "cilium"], var.network_data_plane)) && contains(["azure", "cilium"], var.network_data_plane))
+      var.network_data_plane == null 
+      ? true
+      : contains(["azure", "cilium"], var.network_data_plane)
     )
     error_message = "network_data_plane must be azure, cilium, or null."
   }
