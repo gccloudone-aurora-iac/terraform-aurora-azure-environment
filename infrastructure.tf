@@ -39,7 +39,7 @@ module "infrastructure" {
   naming_convention         = var.naming_convention
   user_defined              = var.user_defined
 
-  spn_object_ids       = var.spn_object_ids
+  spn_object_ids = var.spn_object_ids
 
   cluster_sku_tier     = var.cluster_sku_tier
   cluster_admins       = [var.cluster_admins_group_object_id != null ? var.cluster_admins_group_object_id : azuread_group.cluster_admins[0].object_id]
@@ -60,10 +60,10 @@ module "infrastructure" {
 
   azure_policy_enabled = var.azure_policy_enabled
 
-  network_plugin      = var.network_plugin
-  network_policy      = var.network_policy
-  network_mode        = var.network_mode
-  network_data_plane  = var.network_data_plane
+  network_plugin     = var.network_plugin
+  network_policy     = var.network_policy
+  network_mode       = var.network_mode
+  network_data_plane = var.network_data_plane
 
   networking_ids = {
     dns_zones = {

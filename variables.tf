@@ -52,7 +52,7 @@ variable "tags" {
 ### Service Principals ###
 ##########################
 
-variable spn_object_ids {
+variable "spn_object_ids" {
   type = list(string)
 }
 
@@ -253,7 +253,7 @@ variable "network_mode" {
 
   validation {
     condition = (
-      var.network_mode == null 
+      var.network_mode == null
       ? true
       : contains(["bridge", "transparent"], var.network_mode)
     )
@@ -269,7 +269,7 @@ variable "network_policy" {
 
   validation {
     condition = (
-      var.network_policy == null 
+      var.network_policy == null
       ? true
       : contains(["azure", "cilium"], var.network_policy)
     )
@@ -285,7 +285,7 @@ variable "network_data_plane" {
 
   validation {
     condition = (
-      var.network_data_plane == null 
+      var.network_data_plane == null
       ? true
       : contains(["azure", "cilium"], var.network_data_plane)
     )

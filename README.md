@@ -14,7 +14,7 @@ Examples for this module along with various configurations can be found in the [
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, < 2.0.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | ~> 3.3.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.49.0 |
@@ -22,34 +22,38 @@ Examples for this module along with various configurations can be found in the [
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | ~> 3.3.0 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_azure_resource_names"></a> [azure\_resource\_names](#module\_azure\_resource\_names) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-resource-names.git | v2.0.0 |
-| <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git | v2.0.5 |
+| <a name="module_infrastructure"></a> [infrastructure](#module\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git | v2.0.11 |
 | <a name="module_network"></a> [network](#module\_network) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-network.git | v2.0.1 |
-| <a name="module_platform_infrastructure"></a> [platform\_infrastructure](#module\_platform\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git | v2.0.2 |
+| <a name="module_platform_infrastructure"></a> [platform\_infrastructure](#module\_platform\_infrastructure) | git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-platform-infrastructure.git | v2.0.7 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [azuread_group.cluster_admins](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_azure_policy_enabled"></a> [azure\_policy\_enabled](#input\_azure\_policy\_enabled) | Flag to enable or disable Azure policy | `bool` | `false` | no |
 | <a name="input_azure_resource_attributes"></a> [azure\_resource\_attributes](#input\_azure\_resource\_attributes) | Attributes used to describe Azure resources | <pre>object({<br/>    department_code = string<br/>    owner           = string<br/>    project         = string<br/>    environment     = string<br/>    location        = optional(string, "Canada Central")<br/>    instance        = number<br/>  })</pre> | n/a | yes |
 | <a name="input_cluster_admins"></a> [cluster\_admins](#input\_cluster\_admins) | A list of Object IDs of Azure Active Directory groups or users which should have Admin Role on the Cluster. | `list(string)` | `[]` | no |
+| <a name="input_cluster_admins_group_object_id"></a> [cluster\_admins\_group\_object\_id](#input\_cluster\_admins\_group\_object\_id) | Existing Entra ID group object ID. | `string` | `null` | no |
 | <a name="input_cluster_diag_setting"></a> [cluster\_diag\_setting](#input\_cluster\_diag\_setting) | Manages the diagnostic settings for a Kubernetes cluster. | <pre>map(object({<br/>    log_analytics_workspace_id     = optional(string)<br/>    log_analytics_destination_type = optional(string)<br/>    storage_account_id             = optional(string)<br/>    enabled_log_categories         = optional(list(string), ["kube-apiserver", "kube-controller-manager", "cluster-autoscaler"])<br/>    enable_all_metrics             = optional(bool, false)<br/>  }))</pre> | `null` | no |
 | <a name="input_cluster_linux_profile_ssh_key"></a> [cluster\_linux\_profile\_ssh\_key](#input\_cluster\_linux\_profile\_ssh\_key) | SSH public key to access cluster nodes | `string` | `null` | no |
 | <a name="input_cluster_sku_tier"></a> [cluster\_sku\_tier](#input\_cluster\_sku\_tier) | The SKU of the AKS cluster. | `string` | n/a | yes |
 | <a name="input_cluster_support_plan"></a> [cluster\_support\_plan](#input\_cluster\_support\_plan) | The support plan used for the AKS cluster. | `string` | n/a | yes |
+| <a name="input_create_custom_role_assignment"></a> [create\_custom\_role\_assignment](#input\_create\_custom\_role\_assignment) | Set to true to create the custom role assignments. | `bool` | `true` | no |
+| <a name="input_create_private_dns_zone_role"></a> [create\_private\_dns\_zone\_role](#input\_create\_private\_dns\_zone\_role) | Set to true to create the private dns zone role. | `bool` | `true` | no |
 | <a name="input_custom_ca"></a> [custom\_ca](#input\_custom\_ca) | Configure a custom Certificate Authority (CA) for the Cluster | `string` | `null` | no |
 | <a name="input_data_sources"></a> [data\_sources](#input\_data\_sources) | The Azure resource IDs of existing resources that are required by the module. | <pre>object({<br/>    dns_zone_id = object({<br/>      azmk8s       = string<br/>      cert_manager = string<br/>      blob_storage = string<br/>      keyvault     = string<br/>    })<br/>    active_directory = object({<br/>      service_principal_id = object({<br/>        cicd_runner          = string<br/>        cluster_admins_owner = string<br/>      })<br/>      group_id = object({<br/>        aurora_general_cluster_user = string<br/>      })<br/>      tenant_id       = string<br/>      subscription_id = string<br/>    })<br/>  })</pre> | n/a | yes |
 | <a name="input_ddos_protection_plan_id"></a> [ddos\_protection\_plan\_id](#input\_ddos\_protection\_plan\_id) | The DDoS protection plan resoruce id | `string` | `null` | no |
@@ -58,11 +62,16 @@ Examples for this module along with various configurations can be found in the [
 | <a name="input_grafana_sp"></a> [grafana\_sp](#input\_grafana\_sp) | Settings for the Grafana SSO service principal. | <pre>object({<br/>    members = object({<br/>      viewer = optional(map(string), {})<br/>      editor = optional(map(string), {})<br/>      admin  = map(string)<br/>    })<br/>  })</pre> | <pre>{<br/>  "members": {<br/>    "admin": {},<br/>    "editor": {},<br/>    "viewer": {}<br/>  }<br/>}</pre> | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | The Kubernetes version used by the control plane & the default version for the agent nodes. | `string` | n/a | yes |
 | <a name="input_naming_convention"></a> [naming\_convention](#input\_naming\_convention) | Sets which naming convention to use. Accepted values: oss, gc | `string` | `"oss"` | no |
+| <a name="input_network_data_plane"></a> [network\_data\_plane](#input\_network\_data\_plane) | AKS network data plane | `string` | `"cilium"` | no |
+| <a name="input_network_mode"></a> [network\_mode](#input\_network\_mode) | AKS network mode | `string` | `"transparent"` | no |
+| <a name="input_network_plugin"></a> [network\_plugin](#input\_network\_plugin) | AKS network plugin | `string` | `"azure"` | no |
+| <a name="input_network_policy"></a> [network\_policy](#input\_network\_policy) | AKS network policy | `string` | `"cilium"` | no |
 | <a name="input_node_os_upgrade_channel"></a> [node\_os\_upgrade\_channel](#input\_node\_os\_upgrade\_channel) | The upgrade channel for this Kubernetes Cluster Nodes' OS Image. Possible values are Unmanaged, SecurityPatch, NodeImage and None. | `string` | `"NodeImage"` | no |
-| <a name="input_node_pools"></a> [node\_pools](#input\_node\_pools) | Node Pools along with their respective configurations. | <pre>map(<br/>    object({<br/>      vm_size                = string<br/>      vnet_subnet_name       = optional(string)<br/>      availability_zones     = optional(list(number))<br/>      node_count             = optional(number)<br/>      kubernetes_version     = optional(string)<br/>      node_labels            = optional(map(string))<br/>      node_taints            = optional(list(string))<br/>      max_pods               = optional(number)<br/>      enable_host_encryption = optional(bool)<br/>      os_disk_size_gb        = optional(number)<br/>      os_disk_type           = optional(string)<br/>      os_type                = optional(string)<br/>      vm_priority            = optional(string)<br/>      eviction_policy        = optional(string)<br/>      spot_max_price         = optional(string)<br/><br/>      upgrade_settings = optional(object({<br/>        max_surge                     = optional(string, "33%")<br/>        drain_timeout_in_minutes      = optional(number, 30)<br/>        node_soak_duration_in_minutes = optional(number, 0)<br/>      }), null)<br/><br/>      enable_auto_scaling    = optional(bool)<br/>      auto_scaling_min_nodes = optional(number)<br/>      auto_scaling_max_nodes = optional(number)<br/>      mode                   = optional(string)<br/>    })<br/>  )</pre> | n/a | yes |
+| <a name="input_node_pools"></a> [node\_pools](#input\_node\_pools) | Node Pools along with their respective configurations. | <pre>map(<br/>    object({<br/>      vm_size                = string<br/>      vnet_subnet_name       = optional(string)<br/>      pod_subnet_id          = optional(string)<br/>      availability_zones     = optional(list(number))<br/>      node_count             = optional(number)<br/>      kubernetes_version     = optional(string)<br/>      node_labels            = optional(map(string))<br/>      node_taints            = optional(list(string))<br/>      max_pods               = optional(number)<br/>      enable_host_encryption = optional(bool)<br/>      os_disk_size_gb        = optional(number)<br/>      os_disk_type           = optional(string)<br/>      os_sku                 = optional(string)<br/>      os_type                = optional(string)<br/>      vm_priority            = optional(string)<br/>      eviction_policy        = optional(string)<br/>      spot_max_price         = optional(string)<br/><br/>      upgrade_settings = optional(object({<br/>        max_surge                     = optional(string, "33%")<br/>        drain_timeout_in_minutes      = optional(number, 30)<br/>        node_soak_duration_in_minutes = optional(number, 0)<br/>      }), null)<br/><br/>      enable_auto_scaling    = optional(bool)<br/>      auto_scaling_min_nodes = optional(number)<br/>      auto_scaling_max_nodes = optional(number)<br/>      mode                   = optional(string)<br/>    })<br/>  )</pre> | n/a | yes |
 | <a name="input_route_server_bgp_peers"></a> [route\_server\_bgp\_peers](#input\_route\_server\_bgp\_peers) | The details for creating BGP peer(s) within the route server. | <pre>list(object({<br/>    name     = string<br/>    peer_asn = number<br/>    peer_ip  = string<br/>  }))</pre> | n/a | yes |
 | <a name="input_route_table_next_hop_ip_address"></a> [route\_table\_next\_hop\_ip\_address](#input\_route\_table\_next\_hop\_ip\_address) | The next hop ip address to add to the standard route table. | `string` | n/a | yes |
 | <a name="input_service_principal_owners"></a> [service\_principal\_owners](#input\_service\_principal\_owners) | The Azure identities that will be configured as owners of the created Azure service principals. | `list(string)` | `[]` | no |
+| <a name="input_spn_object_ids"></a> [spn\_object\_ids](#input\_spn\_object\_ids) | n/a | `list(string)` | n/a | yes |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | The subnet ids for the virtual network. | `map(string)` | `null` | no |
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | The environment specific subnets to create in the virtual network. | <pre>map(object({<br/>    address_prefixes = list(string)<br/><br/>    nsg_id     = optional(string)<br/>    create_nsg = optional(bool, true)<br/>    extra_nsg_rules = optional(list(object({<br/>      name                                       = string<br/>      description                                = string<br/>      protocol                                   = string                 # Tcp, Udp, Icmp, Esp, Ah or *<br/>      access                                     = string                 # Allow or Deny<br/>      priority                                   = number                 # The value can be between 100 and 4096<br/>      direction                                  = string                 # Inbound or Outbound<br/>      source_port_range                          = optional(string)       # between 0 and 65535 or * to match any<br/>      source_port_ranges                         = optional(list(string)) # required if source_port_range is not specified<br/>      destination_port_range                     = optional(string)       # between 0 and 65535 or * to match any<br/>      destination_port_ranges                    = optional(list(string)) # required if destination_port_range is not specified<br/>      source_address_prefix                      = optional(string)<br/>      source_address_prefixes                    = optional(list(string)) # required if source_address_prefix is not specified.<br/>      source_application_security_group_ids      = optional(list(string))<br/>      destination_address_prefix                 = optional(string)<br/>      destination_address_prefixes               = optional(list(string)) #  required if destination_address_prefix is not specified<br/>      destination_application_security_group_ids = optional(list(string))<br/>    })), [])<br/><br/>    route_table_id        = optional(string)<br/>    associate_route_table = optional(bool, true)<br/><br/>    service_endpoints = optional(list(string))<br/>    service_endpoint_policy_definitions = optional(list(object({ # No policy is created if unspecified<br/>      name        = optional(string)<br/>      description = optional(string)<br/>      service     = optional(string, "Microsoft.Storage")<br/>      scopes      = list(string)<br/>    })))<br/><br/>    service_delegation_name                       = optional(string)<br/>    private_endpoint_network_policies_enabled     = optional(string, "Enabled")<br/>    private_link_service_network_policies_enabled = optional(bool, true)<br/>  }))</pre> | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | Azure tags to assign to the Azure resources | `map(string)` | `{}` | no |
@@ -75,7 +84,7 @@ Examples for this module along with various configurations can be found in the [
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_argo_workflows_sso_sp"></a> [argo\_workflows\_sso\_sp](#output\_argo\_workflows\_sso\_sp) | Azure service principal used for SSO when logging into Argo Workflows. |
 | <a name="output_argo_workflows_storage_account_id"></a> [argo\_workflows\_storage\_account\_id](#output\_argo\_workflows\_storage\_account\_id) | The ID of the workflows storage account. |
 | <a name="output_backup_resource_group_id"></a> [backup\_resource\_group\_id](#output\_backup\_resource\_group\_id) | The name of the backup resource group. |
@@ -96,6 +105,7 @@ Examples for this module along with various configurations can be found in the [
 | <a name="output_network_resource_group_id"></a> [network\_resource\_group\_id](#output\_network\_resource\_group\_id) | The id of the network resource group created. |
 | <a name="output_node_pool_subnet_address_prefixes"></a> [node\_pool\_subnet\_address\_prefixes](#output\_node\_pool\_subnet\_address\_prefixes) | The node pool subnet address prefixes. |
 | <a name="output_nsg_ids"></a> [nsg\_ids](#output\_nsg\_ids) | The resource ids of the network security groups created within this module. |
+| <a name="output_oidc_issuer_url"></a> [oidc\_issuer\_url](#output\_oidc\_issuer\_url) | The OIDC issuer URL that is associated with the cluster. |
 | <a name="output_platform_infrastructure"></a> [platform\_infrastructure](#output\_platform\_infrastructure) | The outputs of the platform\_infrastructure module. |
 | <a name="output_platform_resource_group_id"></a> [platform\_resource\_group\_id](#output\_platform\_resource\_group\_id) | The name of the platform resource group. |
 | <a name="output_route_server_id"></a> [route\_server\_id](#output\_route\_server\_id) | The ID of the Route Server. |
