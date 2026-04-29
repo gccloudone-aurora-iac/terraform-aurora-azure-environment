@@ -56,6 +56,11 @@ variable "spn_object_ids" {
   type = list(string)
 }
 
+variable "ingress_host" {
+  description = "The host name for ingress to the environment."
+  type        = string
+}
+
 ####################
 ### Data Sources ###
 ####################
