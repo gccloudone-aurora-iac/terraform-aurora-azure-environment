@@ -162,6 +162,7 @@ module "cloud_native_environment" {
     instance        = 0
   }
   service_principal_owners = [data.azurerm_client_config.this.object_id]
+  ingress_host             = "example.ca"
 
   ## Network ##
   vnet_address_space = ["172.26.0.0/23"]
