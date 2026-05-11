@@ -132,4 +132,4 @@ Examples for this module along with various configurations can be found in the [
 | 2026-01-08 | v2.1.1  | Federated identity credential setup in for cert manager in downstream module        |                                                                   |
 | 2026-01-09 | v2.1.2  | Pass oidc issuer url in downstream module        |
 | 2026-01-14 | v2.1.3  | Define `oidc_issuer_url` output for upstream usage                                  |
-| 2026-05-10 | v2.2.0  | Set API permissions on Argo Workflows & Grafana application registration            |
+| 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration            |
