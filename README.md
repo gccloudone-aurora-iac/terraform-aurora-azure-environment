@@ -133,4 +133,5 @@ Examples for this module along with various configurations can be found in the [
 | 2026-01-09 | v2.1.2  | Pass oidc issuer url in downstream module        |
 | 2026-01-14 | v2.1.3  | Define `oidc_issuer_url` output for upstream usage                                  |
 | 2026-04-14 | v2.1.5  | Switch to cilium native CNI.                                                        |
+| 2026-05-9  | v3.0.0  | Fix service principal web redirect URIs                                             |
 | 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration            |
