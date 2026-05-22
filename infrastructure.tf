@@ -33,7 +33,7 @@ resource "azuread_group" "cluster_admins" {
 # https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure
 #
 module "infrastructure" {
-  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v2.0.11"
+  source = "git::https://github.com/gccloudone-aurora-iac/terraform-aurora-azure-environment-infrastructure.git?ref=v3.0.0"
 
   azure_resource_attributes = var.azure_resource_attributes
   naming_convention         = var.naming_convention
@@ -54,7 +54,7 @@ module "infrastructure" {
   cluster_vnet_id               = var.vnet_id == null ? module.network[0].vnet_id : var.vnet_id
   cluster_linux_profile_ssh_key = var.cluster_linux_profile_ssh_key
 
-  custom_ca = var.custom_ca
+  custom_ca_trust_certificates_base64 = var.custom_ca_trust_certificates_base64
 
   node_pools = local.node_pools
 
