@@ -135,3 +135,4 @@ Examples for this module along with various configurations can be found in the [
 | 2026-04-14 | v2.1.5  | Switch to cilium native CNI.                                                        |
 | 2026-05-9  | v3.0.0  | Fix service principal web redirect URIs                                             |
 | 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration            |
+| 2026-05-22 | v4.0.0  | Rename `custom_ca` to `custom_ca_trust_certificates_base64` and change type to `list(string)` |

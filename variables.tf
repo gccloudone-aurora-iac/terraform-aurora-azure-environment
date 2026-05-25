@@ -353,9 +353,9 @@ variable "node_os_upgrade_channel" {
   default     = "NodeImage"
 }
 
-variable "custom_ca" {
+variable "custom_ca_trust_certificates_base64" {
   description = "Configure a custom Certificate Authority (CA) for the Cluster"
-  type        = string
+  type        = list(string)
   default     = null
 }
 
