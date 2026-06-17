@@ -119,24 +119,24 @@ Examples for this module along with various configurations can be found in the [
 
 ## History
 
-| Date       | Release | Change                                                                                           |
-|------------|---------|--------------------------------------------------------------------------------------------------|
-| 2025-01-25 | v1.0.0  | initial commit                                                                                   |
-| 2025-10-08 | v2.0.1  | Uncomment custom velero role                                                                     |
-| 2025-10-20 | v2.0.2  | Add variable `cluster_support_plan`                                                              |
-| 2025-10-20 | v2.0.3  | Pin minimum version of azurerm to 4.49.0                                                         |
-| 2025-10-20 | v2.0.4  | Add option to disable VNET Network Integration                                                   |
-| 2025-10-31 | v2.0.5  | Adds the `cluster_diag_setting` var to configure the cluster's diagnostic setting                |
-| 2025-10-31 | v2.0.6  | Set default for `cluster_sku_tier` to `Standard`                                                 |
-| 2025-12-08 | v2.0.7  | Added support for `os_sku` to node pools.                                                        |
-| 2025-12-08 | v2.0.8  | Enables workload identity by default in the downstream AKS module                                |
-| 2025-12-24 | v2.0.9  | Federated identity credential setup in downstream platform-infrastructure module                 |
-| 2026-01-06 | v2.1.0  | Add additional permissions for velero operations in platform-infrastructure module               |
-| 2026-01-08 | v2.1.1  | Federated identity credential setup in for cert manager in downstream module                     |                                                                   |
-| 2026-01-09 | v2.1.2  | Pass oidc issuer url in downstream module                                                        |
-| 2026-01-14 | v2.1.3  | Define `oidc_issuer_url` output for upstream usage                                               |
-| 2026-04-14 | v2.1.5  | Switch to cilium native CNI.                                                                     |
-| 2026-05-9  | v3.0.0  | Fix service principal web redirect URIs                                                          |
-| 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration                         |
-| 2026-05-22 | v4.0.0  | Rename `custom_ca` to `custom_ca_trust_certificates_base64` and change type to `list(string)`    |
-| 2026-06-17 | v4.1.0  | Add in outputs for Thanos UAMI and Storage                                                       |
+| Date       | Release | Change                                                                                        |
+|------------|---------|-----------------------------------------------------------------------------------------------|
+| 2025-01-25 | v1.0.0  | initial commit                                                                                |
+| 2025-10-08 | v2.0.1  | Uncomment custom velero role                                                                  |
+| 2025-10-20 | v2.0.2  | Add variable `cluster_support_plan`                                                           |
+| 2025-10-20 | v2.0.3  | Pin minimum version of azurerm to 4.49.0                                                      |
+| 2025-10-20 | v2.0.4  | Add option to disable VNET Network Integration                                                |
+| 2025-10-31 | v2.0.5  | Adds the `cluster_diag_setting` var to configure the cluster's diagnostic setting             |
+| 2025-10-31 | v2.0.6  | Set default for `cluster_sku_tier` to `Standard`                                              |
+| 2025-12-08 | v2.0.7  | Added support for `os_sku` to node pools.                                                     |
+| 2025-12-08 | v2.0.8  | Enables workload identity by default in the downstream AKS module                             |
+| 2025-12-24 | v2.0.9  | Federated identity credential setup in downstream platform-infrastructure module              |
+| 2026-01-06 | v2.1.0  | Add additional permissions for velero operations in platform-infrastructure module            |
+| 2026-01-08 | v2.1.1  | Federated identity credential setup in for cert manager in downstream module                  |                                                                   |
+| 2026-01-09 | v2.1.2  | Pass oidc issuer url in downstream module                                                     |
+| 2026-01-14 | v2.1.3  | Define `oidc_issuer_url` output for upstream usage                                            |
+| 2026-04-14 | v2.1.5  | Switch to cilium native CNI.                                                                  |
+| 2026-05-9  | v3.0.0  | Fix service principal web redirect URIs                                                       |
+| 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration                      |
+| 2026-05-22 | v4.0.0  | Rename `custom_ca` to `custom_ca_trust_certificates_base64` and change type to `list(string)` |
+| 2026-06-17 | v4.1.0  | Added user identity and storage account for Thanos                                            |
