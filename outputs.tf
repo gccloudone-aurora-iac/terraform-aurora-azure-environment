@@ -166,6 +166,11 @@ output "kubecost_sp" {
   value       = module.platform_infrastructure.kubecost_sp
 }
 
+output "thanos_identity_client_id" {
+  description = "The Azure Client ID of the Thanos User-Assigned Managed Identity."
+  value       = module.platform_infrastructure.thanos_identity_client_id
+}
+
 ## Storage Accounts ##
 
 output "velero_storage_account_id" {
@@ -176,4 +181,16 @@ output "velero_storage_account_id" {
 output "argo_workflows_storage_account_id" {
   description = "The ID of the workflows storage account."
   value       = module.platform_infrastructure.argo_workflows_storage_account_id
+}
+
+output "thanos_storage_account_name" {
+  description = "The name of the Thanos storage account."
+  value       = module.platform_infrastructure.thanos_storage_account_name
+}
+
+## Containers/Buckets ##
+
+output "thanos_storage_bucket_name" {
+  description = "The name of the container within the Thanos Storage Account that will store Thanos Data."
+  value       = module.platform_infrastructure.thanos_storage_bucket_name
 }
