@@ -79,60 +79,64 @@ Examples for this module along with various configurations can be found in the [
 
 ## Outputs
 
-| Name | Description |
-| ---- | ----------- |
-| <a name="output_argo_workflows_sso_sp"></a> [argo\_workflows\_sso\_sp](#output\_argo\_workflows\_sso\_sp) | Azure service principal used for SSO when logging into Argo Workflows. |
-| <a name="output_argo_workflows_storage_account_id"></a> [argo\_workflows\_storage\_account\_id](#output\_argo\_workflows\_storage\_account\_id) | The ID of the workflows storage account. |
-| <a name="output_backup_resource_group_id"></a> [backup\_resource\_group\_id](#output\_backup\_resource\_group\_id) | The name of the backup resource group. |
-| <a name="output_cert_manager_identity_client_id"></a> [cert\_manager\_identity\_client\_id](#output\_cert\_manager\_identity\_client\_id) | The Azure client ID of the cert-manager user-assigned managed identity. |
-| <a name="output_cert_manager_identity_id"></a> [cert\_manager\_identity\_id](#output\_cert\_manager\_identity\_id) | The Azure resource ID of the cert-manager user-assigned managed identity. |
-| <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id) | The id of the public IP used by the route server |
-| <a name="output_cluster_identity_object_id"></a> [cluster\_identity\_object\_id](#output\_cluster\_identity\_object\_id) | The identity details of the managed identity assigned to the cluster. |
-| <a name="output_cluster_kubeconfig"></a> [cluster\_kubeconfig](#output\_cluster\_kubeconfig) | A Terraform object that contains kubeconfig info. |
-| <a name="output_cluster_kubelet_identity"></a> [cluster\_kubelet\_identity](#output\_cluster\_kubelet\_identity) | The identity details of the user-assigned managed indeity assigned to the cluster's kublets. |
-| <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name) | The name of the AKS cluster. |
-| <a name="output_cluster_node_resource_group_id"></a> [cluster\_node\_resource\_group\_id](#output\_cluster\_node\_resource\_group\_id) | The resource group name that the created AKS cluster is in. |
-| <a name="output_cluster_resource_group_id"></a> [cluster\_resource\_group\_id](#output\_cluster\_resource\_group\_id) | The resource group name that the created AKS cluster is in. |
-| <a name="output_disk_encryption_key_vault_id"></a> [disk\_encryption\_key\_vault\_id](#output\_disk\_encryption\_key\_vault\_id) | The Azure resource ID of the Key Vault used to store the customer managed encryption key for the AKS cluster. |
-| <a name="output_grafana_sso_sp"></a> [grafana\_sso\_sp](#output\_grafana\_sso\_sp) | Azure service principal used for SSO when logging into Grafana. |
-| <a name="output_infrastructure"></a> [infrastructure](#output\_infrastructure) | The outputs of the environment\_infrastructure module. |
-| <a name="output_kubecost_sp"></a> [kubecost\_sp](#output\_kubecost\_sp) | Azure service principal used to access accurate Microsoft Azure billing data. |
-| <a name="output_network"></a> [network](#output\_network) | The outputs of the environment\_network module. |
-| <a name="output_network_resource_group_id"></a> [network\_resource\_group\_id](#output\_network\_resource\_group\_id) | The id of the network resource group created. |
-| <a name="output_node_pool_subnet_address_prefixes"></a> [node\_pool\_subnet\_address\_prefixes](#output\_node\_pool\_subnet\_address\_prefixes) | The node pool subnet address prefixes. |
-| <a name="output_nsg_ids"></a> [nsg\_ids](#output\_nsg\_ids) | The resource ids of the network security groups created within this module. |
-| <a name="output_oidc_issuer_url"></a> [oidc\_issuer\_url](#output\_oidc\_issuer\_url) | The OIDC issuer URL that is associated with the cluster. |
-| <a name="output_platform_infrastructure"></a> [platform\_infrastructure](#output\_platform\_infrastructure) | The outputs of the platform\_infrastructure module. |
-| <a name="output_platform_resource_group_id"></a> [platform\_resource\_group\_id](#output\_platform\_resource\_group\_id) | The name of the platform resource group. |
-| <a name="output_route_server_id"></a> [route\_server\_id](#output\_route\_server\_id) | The ID of the Route Server. |
-| <a name="output_route_server_ip_addresses"></a> [route\_server\_ip\_addresses](#output\_route\_server\_ip\_addresses) | The peer IP addresses of the Route Server. In other words, it is the private IPs of the route server. |
-| <a name="output_route_server_public_ip_id"></a> [route\_server\_public\_ip\_id](#output\_route\_server\_public\_ip\_id) | The ID of the public IP used by the route server |
-| <a name="output_route_table_id"></a> [route\_table\_id](#output\_route\_table\_id) | The address space of the newly created virtual network |
-| <a name="output_velero_identity_id"></a> [velero\_identity\_id](#output\_velero\_identity\_id) | The Azure resource ID of the velero user-assigned managed identity. |
-| <a name="output_velero_storage_account_id"></a> [velero\_storage\_account\_id](#output\_velero\_storage\_account\_id) | The ID of the Velero storage account. |
-| <a name="output_vnet_id"></a> [vnet\_id](#output\_vnet\_id) | The id of the newly created virtual network |
-| <a name="output_vnet_subnets"></a> [vnet\_subnets](#output\_vnet\_subnets) | The ids of subnets created inside the newly created virtual network |
+| Name                                                                                                                                            | Description                                                                                                   |
+|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| <a name="output_argo_workflows_sso_sp"></a> [argo\_workflows\_sso\_sp](#output\_argo\_workflows\_sso\_sp)                                       | Azure service principal used for SSO when logging into Argo Workflows.                                        |
+| <a name="output_argo_workflows_storage_account_id"></a> [argo\_workflows\_storage\_account\_id](#output\_argo\_workflows\_storage\_account\_id) | The ID of the workflows storage account.                                                                      |
+| <a name="output_backup_resource_group_id"></a> [backup\_resource\_group\_id](#output\_backup\_resource\_group\_id)                              | The name of the backup resource group.                                                                        |
+| <a name="output_cert_manager_identity_client_id"></a> [cert\_manager\_identity\_client\_id](#output\_cert\_manager\_identity\_client\_id)       | The Azure client ID of the cert-manager user-assigned managed identity.                                       |
+| <a name="output_cert_manager_identity_id"></a> [cert\_manager\_identity\_id](#output\_cert\_manager\_identity\_id)                              | The Azure resource ID of the cert-manager user-assigned managed identity.                                     |
+| <a name="output_cluster_id"></a> [cluster\_id](#output\_cluster\_id)                                                                            | The id of the public IP used by the route server                                                              |
+| <a name="output_cluster_identity_object_id"></a> [cluster\_identity\_object\_id](#output\_cluster\_identity\_object\_id)                        | The identity details of the managed identity assigned to the cluster.                                         |
+| <a name="output_cluster_kubeconfig"></a> [cluster\_kubeconfig](#output\_cluster\_kubeconfig)                                                    | A Terraform object that contains kubeconfig info.                                                             |
+| <a name="output_cluster_kubelet_identity"></a> [cluster\_kubelet\_identity](#output\_cluster\_kubelet\_identity)                                | The identity details of the user-assigned managed indeity assigned to the cluster's kublets.                  |
+| <a name="output_cluster_name"></a> [cluster\_name](#output\_cluster\_name)                                                                      | The name of the AKS cluster.                                                                                  |
+| <a name="output_cluster_node_resource_group_id"></a> [cluster\_node\_resource\_group\_id](#output\_cluster\_node\_resource\_group\_id)          | The resource group name that the created AKS cluster is in.                                                   |
+| <a name="output_cluster_resource_group_id"></a> [cluster\_resource\_group\_id](#output\_cluster\_resource\_group\_id)                           | The resource group name that the created AKS cluster is in.                                                   |
+| <a name="output_disk_encryption_key_vault_id"></a> [disk\_encryption\_key\_vault\_id](#output\_disk\_encryption\_key\_vault\_id)                | The Azure resource ID of the Key Vault used to store the customer managed encryption key for the AKS cluster. |
+| <a name="output_grafana_sso_sp"></a> [grafana\_sso\_sp](#output\_grafana\_sso\_sp)                                                              | Azure service principal used for SSO when logging into Grafana.                                               |
+| <a name="output_infrastructure"></a> [infrastructure](#output\_infrastructure)                                                                  | The outputs of the environment\_infrastructure module.                                                        |
+| <a name="output_kubecost_sp"></a> [kubecost\_sp](#output\_kubecost\_sp)                                                                         | Azure service principal used to access accurate Microsoft Azure billing data.                                 |
+| <a name="output_network"></a> [network](#output\_network)                                                                                       | The outputs of the environment\_network module.                                                               |
+| <a name="output_network_resource_group_id"></a> [network\_resource\_group\_id](#output\_network\_resource\_group\_id)                           | The id of the network resource group created.                                                                 |
+| <a name="output_node_pool_subnet_address_prefixes"></a> [node\_pool\_subnet\_address\_prefixes](#output\_node\_pool\_subnet\_address\_prefixes) | The node pool subnet address prefixes.                                                                        |
+| <a name="output_nsg_ids"></a> [nsg\_ids](#output\_nsg\_ids)                                                                                     | The resource ids of the network security groups created within this module.                                   |
+| <a name="output_oidc_issuer_url"></a> [oidc\_issuer\_url](#output\_oidc\_issuer\_url)                                                           | The OIDC issuer URL that is associated with the cluster.                                                      |
+| <a name="output_platform_infrastructure"></a> [platform\_infrastructure](#output\_platform\_infrastructure)                                     | The outputs of the platform\_infrastructure module.                                                           |
+| <a name="output_platform_resource_group_id"></a> [platform\_resource\_group\_id](#output\_platform\_resource\_group\_id)                        | The name of the platform resource group.                                                                      |
+| <a name="output_route_server_id"></a> [route\_server\_id](#output\_route\_server\_id)                                                           | The ID of the Route Server.                                                                                   |
+| <a name="output_route_server_ip_addresses"></a> [route\_server\_ip\_addresses](#output\_route\_server\_ip\_addresses)                           | The peer IP addresses of the Route Server. In other words, it is the private IPs of the route server.         |
+| <a name="output_route_server_public_ip_id"></a> [route\_server\_public\_ip\_id](#output\_route\_server\_public\_ip\_id)                         | The ID of the public IP used by the route server                                                              |
+| <a name="output_route_table_id"></a> [route\_table\_id](#output\_route\_table\_id)                                                              | The address space of the newly created virtual network                                                        |
+| <a name="output_thanos_identity_client_id"></a> [thanos\_identity\_client\_id](#output\_thanos\_identity\_client\_id)                           | The Azure Client ID of the Thanos User-Assigned Managed Identity.                                             |
+| <a name="output_thanos_storage_account_name"></a> [thanos\_storage\_account\_name](#output\_thanos\_storage\_account\_name)                     | The Name of the Thanos storage account.                                                                       |
+| <a name="output_thanos_storage_bucket_name"></a> [thanos\_storage\_bucket\_name](#output\_thanos\_storage\_bucket\_name)                        | The Name of the Thanos Bucket.                                                                                |
+| <a name="output_velero_identity_id"></a> [velero\_identity\_id](#output\_velero\_identity\_id)                                                  | The Azure resource ID of the velero user-assigned managed identity.                                           |
+| <a name="output_velero_storage_account_id"></a> [velero\_storage\_account\_id](#output\_velero\_storage\_account\_id)                           | The ID of the Velero storage account.                                                                         |
+| <a name="output_vnet_id"></a> [vnet\_id](#output\_vnet\_id)                                                                                     | The id of the newly created virtual network                                                                   |
+| <a name="output_vnet_subnets"></a> [vnet\_subnets](#output\_vnet\_subnets)                                                                      | The ids of subnets created inside the newly created virtual network                                           |
 <!-- END_TF_DOCS -->
 
 ## History
 
-| Date       | Release | Change                                                                              |
-| ---------- | ------- | ----------------------------------------------------------------------------------- |
-| 2025-01-25 | v1.0.0  | initial commit                                                                      |
-| 2025-10-08 | v2.0.1  | Uncomment custom velero role                                                        |
-| 2025-10-20 | v2.0.2  | Add variable `cluster_support_plan`                                                 |
-| 2025-10-20 | v2.0.3  | Pin minimum version of azurerm to 4.49.0                                            |
-| 2025-10-20 | v2.0.4  | Add option to disable VNET Network Integration                                      |
-| 2025-10-31 | v2.0.5  | Adds the `cluster_diag_setting` var to configure the cluster's diagnostic setting   |
-| 2025-10-31 | v2.0.6  | Set default for `cluster_sku_tier` to `Standard`                                    |
-| 2025-12-08 | v2.0.7  | Added support for `os_sku` to node pools.                                           |
-| 2025-12-08 | v2.0.8  | Enables workload identity by default in the downstream AKS module                   |
-| 2025-12-24 | v2.0.9  | Federated identity credential setup in downstream platform-infrastructure module    |
-| 2026-01-06 | v2.1.0  | Add additional permissions for velero operations in platform-infrastructure module  |
-| 2026-01-08 | v2.1.1  | Federated identity credential setup in for cert manager in downstream module        |                                                                   |
-| 2026-01-09 | v2.1.2  | Pass oidc issuer url in downstream module        |
-| 2026-01-14 | v2.1.3  | Define `oidc_issuer_url` output for upstream usage                                  |
-| 2026-04-14 | v2.1.5  | Switch to cilium native CNI.                                                        |
-| 2026-05-9  | v3.0.0  | Fix service principal web redirect URIs                                             |
-| 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration            |
+| Date       | Release | Change                                                                                        |
+|------------|---------|-----------------------------------------------------------------------------------------------|
+| 2025-01-25 | v1.0.0  | initial commit                                                                                |
+| 2025-10-08 | v2.0.1  | Uncomment custom velero role                                                                  |
+| 2025-10-20 | v2.0.2  | Add variable `cluster_support_plan`                                                           |
+| 2025-10-20 | v2.0.3  | Pin minimum version of azurerm to 4.49.0                                                      |
+| 2025-10-20 | v2.0.4  | Add option to disable VNET Network Integration                                                |
+| 2025-10-31 | v2.0.5  | Adds the `cluster_diag_setting` var to configure the cluster's diagnostic setting             |
+| 2025-10-31 | v2.0.6  | Set default for `cluster_sku_tier` to `Standard`                                              |
+| 2025-12-08 | v2.0.7  | Added support for `os_sku` to node pools.                                                     |
+| 2025-12-08 | v2.0.8  | Enables workload identity by default in the downstream AKS module                             |
+| 2025-12-24 | v2.0.9  | Federated identity credential setup in downstream platform-infrastructure module              |
+| 2026-01-06 | v2.1.0  | Add additional permissions for velero operations in platform-infrastructure module            |
+| 2026-01-08 | v2.1.1  | Federated identity credential setup in for cert manager in downstream module                  |                                                                   |
+| 2026-01-09 | v2.1.2  | Pass oidc issuer url in downstream module                                                     |
+| 2026-01-14 | v2.1.3  | Define `oidc_issuer_url` output for upstream usage                                            |
+| 2026-04-14 | v2.1.5  | Switch to cilium native CNI.                                                                  |
+| 2026-05-9  | v3.0.0  | Fix service principal web redirect URIs                                                       |
+| 2026-05-10 | v3.1.0  | Set API permissions on Argo Workflows & Grafana application registration                      |
 | 2026-05-22 | v4.0.0  | Rename `custom_ca` to `custom_ca_trust_certificates_base64` and change type to `list(string)` |
+| 2026-06-17 | v4.1.0  | Added user identity and storage account for Thanos                                            |
