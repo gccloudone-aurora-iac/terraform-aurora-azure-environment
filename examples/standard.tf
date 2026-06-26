@@ -236,8 +236,8 @@ module "cloud_native_environment" {
     }
     active_directory = {
       service_principal_id = {
-        cicd_runner          = data.azurerm_client_config.this.client_id
-        cluster_admins_owner = ""
+        cicd_runner           = data.azurerm_client_config.this.client_id
+        cluster_admins_owners = []
       }
       group_id = {
         aurora_general_cluster_user = azuread_group.aurora_general_cluster_user.id
