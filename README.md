@@ -141,3 +141,4 @@ Examples for this module along with various configurations can be found in the [
 | 2026-05-22 | v4.0.0  | Rename `custom_ca` to `custom_ca_trust_certificates_base64` and change type to `list(string)` |
 | 2026-06-17 | v4.1.0  | Added user identity and storage account for Thanos                                            |
 | 2026-06-25 | v4.1.1  | Support for cluster_admins_owners                                                             |
+| 2026-06-25 | v4.2.0  | Federated identity credential setup for thanos store and compactor in downstream module       |
