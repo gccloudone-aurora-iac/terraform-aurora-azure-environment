@@ -3,7 +3,7 @@
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_role_management_policy
 #
 resource "azuread_group_role_management_policy" "cluster_admins_member" {
-  group_id = azuread_group.cluster_admins.object_id
+  group_id = local.cluster_admins_group_id
   role_id  = "member"
 
   activation_rules {
@@ -67,7 +67,7 @@ resource "azuread_group_role_management_policy" "cluster_admins_member" {
 
   lifecycle {
     precondition {
-      condition     = var.pim_approvers != azuread_group.cluster_admins.object_id
+      condition     = var.pim_approvers != local.cluster_admins_group_id
       error_message = "The PIM approver group must not be the cluster admins group"
     }
   }
@@ -82,7 +82,7 @@ resource "azuread_group_role_management_policy" "cluster_admins_member" {
 resource "azuread_privileged_access_group_eligibility_schedule" "cluster_admins" {
   for_each = toset(var.cluster_admins)
 
-  group_id        = azuread_group.cluster_admins.object_id
+  group_id        = local.cluster_admins_group_id
   principal_id    = each.value
   assignment_type = "member"
   duration        = "P365D"
