@@ -21,11 +21,27 @@ locals {
 # https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group
 #
 resource "azuread_group" "cluster_admins" {
-  count            = var.cluster_admins_group_object_id == null ? 1 : 0
   display_name     = "${module.azure_resource_names.active_directory_group_name}-cluster-admins"
   owners           = var.data_sources.active_directory.service_principal_id.cluster_admins_owners
-  members          = var.cluster_admins
   security_enabled = true
+
+  # Members are managed by azuread_group_member (SPNs) and PIM (humans)
+  lifecycle {
+    ignore_changes = [members]
+  }
+}
+
+# Adds the service principals in var.spn_object_ids as members of the cluster_admins AAD group.
+# SPNs cannot perform MFA as part of PIM so must be manually added as members.
+# Requires the GroupMember.ReadWrite.All (or Group.ReadWrite.All) Microsoft Graph API permissions.
+#
+# https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/resources/group_member
+#
+resource "azuread_group_member" "cluster_admins_spns" {
+  for_each = toset(var.spn_object_ids)
+
+  group_object_id  = azuread_group.cluster_admins.object_id
+  member_object_id = each.value
 }
 
 # Deploys Azure Kubernetes Service and its related infrastructure.
