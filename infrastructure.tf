@@ -42,7 +42,7 @@ resource "azuread_group" "cluster_admins" {
 resource "azuread_group_member" "cluster_admins_spns" {
   for_each = toset(var.spn_object_ids)
 
-  group_object_id  = azuread_group.cluster_admins.object_id
+  group_object_id  = local.cluster_admins_group_id
   member_object_id = each.value
 }
 
